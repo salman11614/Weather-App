@@ -10,7 +10,7 @@ function getWeather() {
     const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
-    // Fetch current weather data
+   
     fetch(currentWeatherUrl)
         .then(response => response.json())
         .then(data => {
@@ -21,7 +21,7 @@ function getWeather() {
             alert('Error fetching current weather data. Please try again.');
         });
 
-    // Fetch forecast data
+   
     fetch(forecastUrl)
         .then(response => response.json())
         .then(data => {
@@ -45,8 +45,8 @@ function displayWeather(data) {
         weatherInfoDiv.innerHTML = `<p>${data.message}</p>`;
     } else {
         const cityName = data.name;
-        const temperatureInCelsius = Math.round(data.main.temp - 273.15); // Convert from Kelvin to Celsius
-        const temperatureInFahrenheit = Math.round((temperatureInCelsius * 9/5) + 32); // Convert to Fahrenheit
+        const temperatureInCelsius = Math.round(data.main.temp - 273.15); 
+        const temperatureInFahrenheit = Math.round((temperatureInCelsius * 9/5) + 32); 
         const description = data.weather[0].description;
         const iconCode = data.weather[0].icon;
         const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
@@ -60,7 +60,7 @@ function displayWeather(data) {
 
 function displayHourlyForecast(hourlyData) {
     const hourlyForecastDiv = document.getElementById('hourly-forecast');
-    hourlyForecastDiv.innerHTML = ''; // Clear previous data
+    hourlyForecastDiv.innerHTML = ''; 
 
     const next24Hours = hourlyData.slice(0, 8);
 
@@ -68,7 +68,7 @@ function displayHourlyForecast(hourlyData) {
         const dateTime = new Date(item.dt * 1000);
         const hour = dateTime.getHours();
         const temperatureInCelsius = Math.round(item.main.temp - 273.15);
-        const temperatureInFahrenheit = Math.round((temperatureInCelsius * 9/5) + 32); // Convert to Fahrenheit
+        const temperatureInFahrenheit = Math.round((temperatureInCelsius * 9/5) + 32); 
         const iconCode = item.weather[0].icon;
         const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
 
